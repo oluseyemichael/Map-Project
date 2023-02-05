@@ -1,0 +1,77 @@
+{% extends 'base_auth.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Registration Form Start -->
+<div class="row justify-content-center wrapper" id="register-box">
+    <div class="col-lg-10 my-auto myShadow">
+      <div class="row">
+        <div class="col-lg-5 d-flex flex-column justify-content-center myColor p-4">
+          <h1 class="text-center font-weight-bold text-white">Welcome Back!</h1>
+          <hr class="my-4 bg-light myHr" />
+          <p class="text-center font-weight-bolder text-light lead">To keep connected with us please login with your personal info.</p>
+          <a href="{% url 'login' %}">
+            <button class="btn btn-outline-light btn-lg font-weight-bolder mt-4 align-self-center myLinkBtn" id="login-link">Login</button>
+        </a>
+        </div>
+        <div class="col-lg-7 bg-white p-4">
+          <h1 class="text-center font-weight-bold text-primary">Create Account</h1>
+          <hr class="my-3" />
+
+
+    
+
+
+
+          <form action="{% url 'register' %}" method="post" class="px-3" id="register-form">
+            {% csrf_token %}
+
+            {%include 'authentication/messages.html' %}
+            <div class="input-group input-group-lg form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text rounded-0"><i class="far fa-user fa-lg fa-fw"></i></span>
+              </div>
+              <input type="text" id="name" name="username" value="{{fieldValues.username}}" class="form-control rounded-0" placeholder="Username" required />
+            </div>
+            <div class="invalid_feedback invalid-feedback" style="display:none">
+               
+            </div>
+            <p class ="text-sm text-success usernameSuccessOutput"></p>
+            <div class="input-group input-group-lg form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text rounded-0"><i class="far fa-envelope fa-lg fa-fw"></i></span>
+              </div>
+              <input type="email" id="remail" name="email" value="{{fieldValues.email}}" class="form-control rounded-0" placeholder="E-Mail" required />
+            </div>
+            <div class="emailfeedBackField invalid-feedback" style="display:none">
+            
+            </div>
+            <p class ="text-sm text-success emailSuccessOutput"></p>
+            <div class="input-group input-group-lg form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text rounded-0"><i class="fas fa-key fa-lg fa-fw"></i></span>
+              </div>
+              <input type="password" id="rpassword" name="password" class="form-control rounded-0" minlength="5" placeholder="Password" required />
+            </div>
+            <div class="input-group input-group-lg form-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text rounded-0"><i class="fas fa-key fa-lg fa-fw"></i></span>
+              </div>
+              <input type="password" id="cpassword" name="cpassword" class="form-control rounded-0" minlength="5" placeholder="Confirm Password" required />
+            </div>
+            <div class="form-group">
+              <div id="passError" class="text-danger font-weight-bolder"></div>
+            </div>
+            <div class="form-group">
+              <input type="submit" id="register-btn" value="Register" class="btn btn-primary btn-lg btn-block myBtn" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Registration Form End -->
+
+<script src="{%static 'js/register.js' %}"> </script>
+
+{% endblock content %}
